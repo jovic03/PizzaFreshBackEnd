@@ -41,7 +41,7 @@ export class TableController {
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({
-    summary: 'Dela uma mesa pelo ID',
+    summary: 'Deleta uma mesa pelo ID',
   })
   delete(@Param('id') id: string) {
     this.tableService.delete(id);

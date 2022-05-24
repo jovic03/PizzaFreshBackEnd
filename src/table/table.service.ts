@@ -37,12 +37,6 @@ export class TableService {
 
   }
 
-  handleError(error: Error){
-    console.log(error.message);
-
-    return undefined;
-  }
-
 
   async update(id:string,dto:UpdateTableDto):Promise<Table>{
 
@@ -63,6 +57,12 @@ export class TableService {
     await this.prisma.table.delete({
       where:{id}
     });
+  }
+
+  handleError(error: Error){
+    console.log(error.message);
+
+    return undefined;
   }
 
 }
