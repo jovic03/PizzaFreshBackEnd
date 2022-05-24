@@ -15,6 +15,7 @@ async function bootstrap() {
     .addTag('status')
     .addTag('table')
     .addTag('product')
+    .addTag('user')
     .build();//somente o build é obrigatorio pro docBuilder, restante é pra organizar e facilitar leitura de codigo
 
   const document = SwaggerModule.createDocument(app, config);
