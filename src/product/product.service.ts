@@ -3,6 +3,7 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { Product } from './entities/product.entity';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { handleError } from 'src/utils/handle-error.util';
 
 @Injectable()
 export class ProductService {
@@ -33,7 +34,7 @@ export class ProductService {
 
     return this.prisma.product.create({
       data,//antes:  data:product--- como no this ja esta recebendo e na linha 20 ja esta recebendo a tabela fica mais simples assim
-    }).catch(this.handleError);
+    }).catch(handleError);
 
   }
 
@@ -58,10 +59,5 @@ export class ProductService {
     });
   }
 
-  handleError(error: Error){
-    console.log(error.message);
-
-    return undefined;
-  }
 
 }

@@ -11,8 +11,12 @@ model Table {
   id     String @id @default(uuid())
   number Int    @unique
 
+  order Order[]
+
+
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+
 
   @@map("table")
 }
@@ -24,13 +28,17 @@ model Product {
   price       Float
   image       String
 
+  orders Order[]
+
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+
+
 
   @@map("product")
 }
 
-model User{
+model User {
 
   id       String @id @default(uuid())
   nickname String @unique
@@ -38,9 +46,32 @@ model User{
   password String
   image    String
 
+  orders Order[] //recebendo valores da fk de Order
+
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
-  @@map("user")
 
+
+
+  @@map("user")
+}
+
+model Order {
+  id String @id @default(uuid())
+
+  user   User   @relation(fields: [userId], references: [id]) //faz relacao com a tabela User
+  userId String @map("user_id") //informacao de qual usuario
+
+  Table   Table  @relation(fields: [tableId], references: [id])
+  tableId String @map("table_id")
+
+  products Product[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+
+
+  @@map("order")
 }

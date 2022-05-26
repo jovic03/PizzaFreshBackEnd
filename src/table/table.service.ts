@@ -3,6 +3,7 @@ import { CreateTableDto } from './dto/create-table.dto';
 import { Table } from './entities/table.entities';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { UpdateTableDto } from './dto/update-table.dto';
+import { handleError } from 'src/utils/handle-error.util';
 
 @Injectable()
 export class TableService {
@@ -33,7 +34,7 @@ export class TableService {
 
     return this.prisma.table.create({
       data,//antes:  data:table--- como no this ja esta recebendo e na linha 20 ja esta recebendo a tabela fica mais simples assim
-    }).catch(this.handleError);
+    }).catch(handleError);
 
   }
 
@@ -57,12 +58,6 @@ export class TableService {
     await this.prisma.table.delete({
       where:{id}
     });
-  }
-
-  handleError(error: Error){
-    console.log(error.message);
-
-    return undefined;
   }
 
 }

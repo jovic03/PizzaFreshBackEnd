@@ -1,9 +1,10 @@
-import { BadRequestException, Injectable, NotFoundException, UnprocessableEntityException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { User } from './entities/user.entity';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import * as bcrypt from 'bcrypt';
+import { handleError } from 'src/utils/handle-error.util';
 
 @Injectable()
 export class UserService {
@@ -59,7 +60,7 @@ private userSelect = {
     return this.prisma.user.create({
       data,//antes:  data:user--- como no this ja esta recebendo e na linha 20 ja esta recebendo a tabela fica mais simples assim
       select:this.userSelect,
-    }).catch(this.handleError);
+    }).catch(handleError);
 
   }
 
@@ -94,19 +95,6 @@ private userSelect = {
     await this.prisma.user.delete({
       where:{id}
     });
-  }
-
-  handleError(error: Error):undefined{
-
-    const errorLines = error.message?.split('\n');
-    const lastErrorLine = errorLines[errorLines.length-1]?.trim();
-
-    if (!lastErrorLine) {
-      console.error(error);
-    }
-
-    throw new UnprocessableEntityException(lastErrorLine ||
-       'Algum erro ocorreu ao executar a operação',);
   }
 
 }
