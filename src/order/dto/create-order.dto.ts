@@ -6,7 +6,7 @@ export class CreateOrderDto {
   @IsUUID()
   @ApiProperty({
     description: 'ID do usuário que está criando o pedido',
-    example: 'e1bc0c89-a319-44df-a6e9-db66fe7b956b',
+    example: '73dffe89-a5bc-4e5e-a939-9c6a267163ca',
   })
   userId: string;
 
