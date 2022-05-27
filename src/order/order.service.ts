@@ -22,9 +22,14 @@ export class OrderService {
         },
       },
       products:{
-        connect:createOrderDto.products.map(ProductId =>({
-          id:ProductId
-        })),
+        createMany:{
+          data:createOrderDto.products.map((createOrderProductDto) =>
+          ({
+            productId: createOrderProductDto.productId,
+            quantity: createOrderProductDto.quantity,
+            description: createOrderProductDto.description,
+          })),
+        }
       },
 
     };
@@ -45,10 +50,16 @@ export class OrderService {
         },
         products:{
           select:{
-            name:true,
-          }
-        }
-      }
+            quantity:true,
+            description:true,
+            product:{
+              select:{
+                name: true,
+              },
+            },
+          },
+        },
+      },
     }).catch(handleError)
   }
 
@@ -93,11 +104,16 @@ export class OrderService {
         },
         products: {
           select: {
-            id: true,
-            name: true,
-            price: true,
-            image: true,
-            description: true,
+            product:{
+              select:{
+                id:true,
+                name:true,
+                price:true,
+                image:true,
+                description:true,
+
+              }
+            }
           },
         },
       },
