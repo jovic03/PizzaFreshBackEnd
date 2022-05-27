@@ -22,7 +22,7 @@ export class CreateOrderDto {
   @ApiProperty({
     description: 'Lista com os IDs dos produtos que estão no pedido',
     example:
-      '["04f66779-bcfa-4c5c-a140-f234138890f3", "adb96fd7-cdcf-43dc-9e1b-0c0a262111f9"]',
+      '["1c51e725-2063-4714-80e9-9ad9fef2f5a8", "c92d5c9d-10e8-4003-8dea-0c8a4d4798e7"]',
   })
   products: string[];
 
