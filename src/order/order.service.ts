@@ -53,11 +53,55 @@ export class OrderService {
   }
 
   findAll() {
-    return `This action returns all order`;
+    return this.prisma.order.findMany({
+      select:{
+        id:true,
+        Table:{
+          select:{
+            number:true,
+          },
+        },
+        user:{
+          select:{
+            name:true,
+          },
+        },
+        _count:{
+          select:{
+            products:true,
+          }
+        }
+
+      }
+    }
+    );
   }
 
   findOne(id: string) {
-    return `This action returns a #${id} order`;
+    return this.prisma.order.findUnique({
+      where: { id },
+      include: {
+        user: {
+          select: {
+            name: true,
+          },
+        },
+        Table: {
+          select: {
+            number: true,
+          },
+        },
+        products: {
+          select: {
+            id: true,
+            name: true,
+            price: true,
+            image: true,
+            description: true,
+          },
+        },
+      },
+    });
   }
 
 }
