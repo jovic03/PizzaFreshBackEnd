@@ -60,7 +60,7 @@ model User {
 model Order {
   id String @id @default(uuid())
 
-  user   User   @relation(fields: [userId], references: [id]) //faz relacao com a tabela User
+  user   User   @relation(fields: [userId], references: [id]) //faz relacao com a tabela User--- nome da variavel 'user' em minusculo, porem no material esta maiusculo, mas somente variavel aqui do ts, foi usada no order.service
   userId String @map("user_id") //informacao de qual usuario
 
   Table   Table  @relation(fields: [tableId], references: [id])
