@@ -9,11 +9,11 @@ export class OrderService {
   constructor (private readonly prisma: PrismaService){}
 
 
-  create(createOrderDto: CreateOrderDto) {
+  create(userId:string, createOrderDto: CreateOrderDto) {
     const data: Prisma.OrderCreateInput = {
       user:{
         connect:{
-          id:createOrderDto.userId
+          id:userId
         }
       },
       Table:{
