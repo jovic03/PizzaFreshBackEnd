@@ -13,7 +13,7 @@ export class OrderService {
     const data: Prisma.OrderCreateInput = {
       user:{
         connect:{
-          id:userId
+          id:userId,
         }
       },
       Table:{

@@ -4,7 +4,9 @@ import {ValidationPipe} from '@nestjs/common'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    cors:true,
+  });
 
   app.useGlobalPipes(new ValidationPipe());//ele que faz a validacao do dado recebido para unicamente o que foi estabelecido (no caso do create-table.dto nao vai poder receber null mais)
 

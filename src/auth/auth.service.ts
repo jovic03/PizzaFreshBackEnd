@@ -1,6 +1,6 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { LoginDto } from './login.dto';
-import { LoginResponseDto } from './login-response.dto';
+import { LoginDto } from './dto/login.dto';
+import { LoginResponseDto } from './dto/login-response.dto';
 import * as bcrypt from 'bcrypt'
 import { PrismaService } from 'src/prisma/prisma.service';
 import { JwtService } from '@nestjs/jwt';
@@ -35,8 +35,8 @@ export class AuthService {
 
 
     return {
-      token: 'Teste',
-      user: undefined,
+      token: this.jwtService.sign({nickname}),
+      user,
     };
   }
 

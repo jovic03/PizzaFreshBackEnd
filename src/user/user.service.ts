@@ -54,7 +54,7 @@ private userSelect = {
 
     const data: User = {
       ...createUserDto,
-      password:await bcrypt.hash(createUserDto.password,10)
+      password:await bcrypt.hash(createUserDto.password,10),
     };//antes: const user: user
 
     return this.prisma.user.create({
@@ -67,6 +67,7 @@ private userSelect = {
   async update(id:string,dto:UpdateUserDto):Promise<User>{
 
     await this.findOne(id);
+    
     if(dto.password){
       if(dto.password != dto.confirmPassword){
         throw new BadRequestException('As senhas informadas não são iguais.')

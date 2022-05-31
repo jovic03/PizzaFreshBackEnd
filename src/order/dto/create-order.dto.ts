@@ -6,12 +6,12 @@ import { CreateOrderProductDto } from './create-order-product.dto';
 
 export class CreateOrderDto {
 
-  @IsUUID()
+  /*@IsUUID()
   @ApiProperty({
     description: 'ID do usuário que está criando o pedido',
     example: '73dffe89-a5bc-4e5e-a939-9c6a267163ca',
   })
-  userId: string;
+  userId: string;*///nao vamos mais usar pois o auth ja ve a funcao
 
   @IsInt()
   @IsPositive()
