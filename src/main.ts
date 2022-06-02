@@ -29,6 +29,6 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
 
-  await app.listen(3333);//alterado de 3000 p/ 3333 pra no conflitar com react
+  await app.listen(process.env.PORT || 3333);//alterado de 3000 p/ 3333 pra no conflitar com react
 }
 bootstrap();
